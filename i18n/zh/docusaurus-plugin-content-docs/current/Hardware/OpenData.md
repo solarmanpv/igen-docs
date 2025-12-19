@@ -17,13 +17,13 @@ OpenData是为基于WiFi的Solarman物联网设备（如插座、电表、读表
 ### 使用场景
 
 1. **推送设备数据（UDP）**
-    - 不加密：UDP广播至 255.255.255.255
+    - UDP广播至 255.255.255.255
     - 设备Key加密：UDP广播至 255.255.255.255（暂不支持，敬请期待）
 
 2. **接收外部查询请求（HTTP/HTTPS）**
-    - HTTP：无加密认证，明文传输
-    - HTTP + Digest：Digest认证
-    - HTTPS：TLS/SSL加密（暂不支持，敬请期待）
+    - HTTP
+    - HTTP + Digest
+    - HTTPS（暂不支持，敬请期待）
 
 <img src={require("./img/opendata_use_cases.png").default} width="400"/>
 
@@ -31,25 +31,25 @@ OpenData是为基于WiFi的Solarman物联网设备（如插座、电表、读表
 
 ### 1. 安装工具
 
-- 任一网络调试工具（如[NetAssist](https://www.cmsoft.cn/resource/102.html)）：用于接收UDP广播。
-- [Postman](https://www.getpostman.com/)：用于调用HTTP API获取设备信息或更新设备配置。
+- 用于接收UDP广播：可选用任一网络调试工具（如 [NetAssist](https://www.cmsoft.cn/resource/102.html)）。
+- 用于发送HTTP请求：可选用[Postman](https://www.getpostman.com/)或cURL命令行工具。
 
 ### 2. 开启API
 
-在默认状态下设备API功能关闭，需要手动开启后才能使用API。
+在**默认状态下设备API功能关闭**，需要手动开启后才能使用API。
 
 ### 3. 获取IP地址
 
 以下四种方法任选其一：
 
-- 路由器管理后台查询
+- 路由器管理后台查询。
 
-- Solarman Smart APP查看设备详情
+- Solarman Smart APP查看设备详情。
 
-- Energy Ease查看设备信息
+- Energy Ease查看设备信息。
 
 <details>
-<summary>UDP广播获取IP</summary>
+<summary>UDP广播获取IP。</summary>
 
 1. 确保设备接入的WiFi网络与电脑处于同一局域网。
 
@@ -68,7 +68,7 @@ OpenData是为基于WiFi的Solarman物联网设备（如插座、电表、读表
     <img src={require("./img/click_open.png").default} width="200"/>
 
 7. 在远程主机设置广播地址及端口：**255.255.255.255:8099**。
-    ![enter_ip_port.png](./img//enter_ip_port.png)
+    <img src={require("./img/enter_ip_port.png").default} width="400"/>
 
 8. 在消息框里填写AT指令：**AT+IGDEVICEIP**。
     <img src={require("./img/enter_at_command.png").default} width="400"/>
@@ -81,13 +81,57 @@ OpenData是为基于WiFi的Solarman物联网设备（如插座、电表、读表
 </details>
 
 
+## 4. 检查固件版本
+
+根据设备型号确认设备固件版本是否符合要求，可通过以下任一方式查看固件版本信息：
+- 在Solarman Smart / Energy Ease App中查看设备信息。
+- 发送HTTP请求，调用[Sys.GetConfig](#sys)接口获取设备配置信息。
+
+<table><thead>
+  <tr>
+    <th>设备</th>
+    <th>型号</th>
+    <th>最低固件版本</th>
+  </tr></thead>
+<tbody>
+  <tr>
+    <td>P1读表器</td>
+    <td>P1-2W</td>
+    <td>V1.3.0A_R003.001_MP12W_00000013</td>
+  </tr>
+  <tr>
+    <td>智能计量插座</td>
+    <td>SP-2W-EU</td>
+    <td>V1.3.0A_R002.001_MSP2W_00000010</td>
+  </tr>
+  <tr>
+    <td rowspan="3">智能导轨电表</td>
+    <td>MR1-D5-WR<br />MR1-D5-W</td>
+    <td>V1.3.0A_R00B.032_M051A_00000015</td>
+  </tr>
+  <tr>
+    <td>MR1-D4-WRE<br />MR3-D4-WRE<br />MR1-D4-WE<br />MR3-D4-WE</td>
+    <td>V1.3.0A_R009.002_M0000_00000016</td>
+  </tr>
+  <tr>
+    <td>MR1-D3-W<br />MR3-D3-W</td>
+    <td>V1.3.07_R00A.002_M0515_00000017</td>
+  </tr>
+  <tr>
+    <td>近红外读表器</td>
+    <td>NIR-1<br />NIR-3</td>
+    <td>V1.4.01_R016.052_M0000_00000013</td>
+  </tr>
+</tbody>
+</table>
+
 ## 三、UDP使用说明
 
 ### 开启功能
 
-UDP默认状态为关闭，需要手动开启UDP。
+UDP**默认状态为关闭**，需要手动开启UDP。
 
-### UDP不加密
+### UDP
 
 对于支持UDP广播服务的设备，您可通过接收UDP报文来获取设备信息。
 
@@ -111,30 +155,31 @@ UDP默认状态为关闭，需要手动开启UDP。
     <img src={require("./img/select_ip2.png").default} width="200"/>
 
 5. 设置本地**端口**号为**8088**。
-<img src={require("./img/enter_port2.png").default} width="200"/>
+    <img src={require("./img/enter_port2.png").default} width="200"/>
 6. 点击“**Open**”开始监听。
-<img src={require("./img/click_open.png").default} width="200"/>
+    <img src={require("./img/click_open.png").default} width="200"/>
 7. 在接收设置区域可选择报文显示格式：ASCII、Hex。
-<img src={require("./img/select_format.png").default} width="200"/>
+    <img src={require("./img/select_format.png").default} width="200"/>
 8. 接收区将显示收到的广播报文。
-![receice_udp_packet.png](./img/receice_udp_package.png)
+    ![receice_udp_packet.png](./img/receice_udp_package.png)
 
 :::info 注意
 如果接收区无数据，请检查设备与电脑是否处于同一个局域网下，并确保防火墙允许该网络通信。
 :::
 
 ### UDP 设备key加密
+
 暂不支持，敬请期待
 
 ## 四、HTTP使用说明
 
 ### 请求结构
 
-#### 请求方法
+**请求方法**
 - **GET**：请求服务器返回指定资源。
 - **POST**：请求服务器执行特定操作。
 
-#### 请求地址
+**请求地址**
 
 ```
 http://{IP_ADDRESS}:8080/rpc/{API}
@@ -142,7 +187,8 @@ http://{IP_ADDRESS}:8080/rpc/{API}
 - `{IP_ADDRESS}`：设备的IP地址。
 - `{API}`：调用的HTTP API。
 
-### 请求示例
+**请求示例**
+
 - 获取设备信息：
 
 ```
@@ -154,7 +200,22 @@ GET http://192.168.31.213:8080/rpc/Sys.GetConfig
 POST http://192.168.31.213:8080/rpc/Sys.SetConfig?config={"device":{"hostname":"admin"}}
 ```
 
+**cURL命令示例**
+
+- 获取设备信息：
+
+```
+curl http://192.168.31.213:8080/rpc/Sys.GetConfig
+```
+
+- 修改设备名称：
+
+```
+curl -g -X POST -H "Content-Type: application/json" "http://192.168.31.213:8080/rpc/Sys.SetConfig?config={\"device\":{\"hostname\":\"admin\"}}"
+```
+
 ### Digest认证
+
 Digest认证技术用于网络通信中验证用户身份，避免密码明文传输。
 
 :::info 注意
@@ -162,10 +223,13 @@ Digest认证技术用于网络通信中验证用户身份，避免密码明文�
 :::
 
 #### 修改密码
+
 1. 在Postman选择**Authorization**标签。
-<img src={require("./img/select_authorization.png").default} width="400"/>
+    <img src={require("./img/select_authorization.png").default} width="400"/>
+
 2. 在**Auth Type**下拉框选择**Digest Auth**。
-<img src={require("./img/select_digest.png").default} width="300"/>
+    <img src={require("./img/select_digest.png").default} width="300"/>
+
 3. 使用在线AES加密工具生成Base64格式的加密密码和Tag值。
 
     **所需在线工具**：
@@ -198,7 +262,7 @@ Digest认证技术用于网络通信中验证用户身份，避免密码明文�
    | Opaque       | 不填                              |
 
 5. 在HTTP方法下拉框选择**POST**请求。
-<img src={require("./img/select_post.png").default} width="150"/>
+    <img src={require("./img/select_post.png").default} width="150"/>
 
 6. 请求地址为：
 
@@ -219,10 +283,13 @@ Digest认证技术用于网络通信中验证用户身份，避免密码明文�
 > 收到`{"result": true}`，修改密码成功。
 
 #### 请求其他接口
+
 1. 在Postman选择**Authorization**标签。
-<img src={require("./img/select_authorization.png").default} width="400"/>
+    <img src={require("./img/select_authorization.png").default} width="400"/>
+
 2. 在**Auth Type**下拉框选择**Digest Auth**。
-<img src={require("./img/select_digest.png").default} width="300"/>
+    <img src={require("./img/select_digest.png").default} width="300"/>
+
 3. 认证信息见下表：
 
    | 字段         | 值                              |
@@ -238,6 +305,7 @@ Digest认证技术用于网络通信中验证用户身份，避免密码明文�
    | Opaque       | 不填                            |
 
 ### HTTPS
+
 暂不支持，敬请期待
 
 ### 错误码
@@ -260,11 +328,12 @@ Digest认证技术用于网络通信中验证用户身份，避免密码明文�
 | 505    | HTTP Version Not Supported（HTTP 版本不支持） | 服务器不支持请求中使用的 HTTP 版本。                       |
 
 ## 五、HTTP API
-| 组件          | 说明                                             |
-| ------------- | ------------------------------------------------ |
-| [Sys](#sys)   | 提供有关设备型号、固件版本等信息。               |
-| [P1](#p1)     | 从P1读表器读取电表用气信息。                     |
-| [Plug](#plug) | 读取智能计量插座获取当前功率信息，控制插座通断。 |
+| 组件            | 说明                                             |
+| --------------- | ------------------------------------------------ |
+| [Sys](#sys)     | 提供有关设备型号、固件版本等信息。               |
+| [P1](#p1)       | 从P1读表器读取电表用气信息。                     |
+| [Plug](#plug)   | 读取智能计量插座获取当前功率信息，控制插座通断。 |
+| [Meter](#meter) | 读取电表数据。                                   |
 
 ### Sys
 
@@ -348,10 +417,11 @@ device参数说明
 | time_stamp | int      | 设备当前时间戳         | R        |
 | run_time   | int      | 设备运行时间（单位秒） | R        |
 
+---
 
 ### P1
 
-#### 获取读表器Json数据
+#### 获取读表器JSON数据
 
 - 请求示例
 
@@ -388,11 +458,11 @@ GET http://192.168.31.213:8080/rpc/P1.JsonData
 
 > **方法：P1.JsonData**
 >
-> - 返回值: Json格式的电表数据。
+> - 返回值: JSON格式的电表数据。
 >
 > | 参数名                                        | 说明                 | 单位 |
-> | --------------------------------------------- | -------------------- | ---- |
-> | SN                                            | 当前电表设备SN       | -    |
+> | ---------------------------------------------  | -------------------- | ---- |
+> | SN                                             | 当前电表设备SN       | -    |
 > | Device_Version                                | 当前电表版本         | -    |
 > | Device_Type                                   | 当前电表设备型号     | -    |
 > | Electricity delivered to client_low tariff    | 正向低费率累计电能   | kWh  |
@@ -467,6 +537,8 @@ GET http://192.168.31.213:8080/rpc/P1.GetData
 ```
 > **方法：P1.GetData**
 > - 返回值：设备获取的电表源数据。
+
+---
 
 ### Plug
 
@@ -559,51 +631,183 @@ POST http://192.168.31.213:8080/rpc/Plug.SetStatus?config={"switch_status":"on"}
 | Active power                    | float    | 有功功率                                | W    | R        |
 | switch_status                   | string   | 插座通断控制：`on` - 打开，`off` - 断开 | -    | R/W      |
 
+---
 
 ### Meter
 
-#### 获取电表Json数据
+#### 获取电表JSON数据
 
 - 请求示例
 
 ```
 GET http://192.168.31.213:8080/rpc/Meter.JsonData
 ```
+  - 返回值示例
 
-- 返回值示例
-```json
-{
-    "SN": "3310500113",
-    "voltage": 229.87,
-    "current": 0.66,
-    "active power": 133.50,
-    "apparent power": 209.60,
-    "reactive power": -29.80,
-    "power factor": 0.63,
-    "frequency": 50.03,
-    "total_act_energy": 3.53,
-    "total_act_ret_energy": 0.18
-}
-```
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+<Tabs groupId="meter">
+  <TabItem value="single-phase" label="单相电表">
+  ```json
+  {
+      "SN": "3310500113",
+      "voltage": 229.87,
+      "current": 0.66,
+      "active power": 133.50,
+      "apparent power": 209.60,
+      "reactive power": -29.80,
+      "power factor": 0.63,
+      "frequency": 50.03,
+      "total_act_energy": 3.53,
+      "total_act_ret_energy": 0.18
+  }
+  ```
+  </TabItem>
+  <TabItem value="three-phase" label="三相电表">
+  ```json
+  {
+      "data": {
+          "sn": "3310290536",
+          "a_current": 0,
+          "b_current": 0,
+          "c_current": 0.54,
+          "a_voltage": 0,
+          "b_voltage": 0,
+          "c_voltage": 231,
+          "frequency": 49.73,
+          "total_pf": 73.30,
+          "a_pf": 100,
+          "b_pf": 100,
+          "c_pf": 73.30,
+          "total_act_power": 95,
+          "a_act_power": 0,
+          "b_act_power": 0,
+          "c_act_power": 93,
+          "total_aprt_power": 124,
+          "a_aprt_power": 0,
+          "b_aprt_power": 0,
+          "c_aprt_power": 124,
+          "total_react_power": -27,
+          "a_react_power": 0,
+          "b_react_power": 0,
+          "c_react_power": -27,
+          "total_act_energy": 29.57,
+          "total_act_ret_energy": 10.15,
+          "a_act_energy": 12.69,
+          "b_act_energy": 0,
+          "c_act_energy": 16.87,
+          "a_act_ret_energy": 0,
+          "b_act_ret_energy": 0,
+          "c_act_ret_energy": 10.14
+      }
+  }
+  ```
+  </TabItem>
+  <TabItem value="ir-reader" label="近红外读表器">
+  ```json
+  {
+    "SN":"3320730586",
+    "SN2":"56197869",
+    "Total Active Power":-30,
+    "L1 Phase Voltage":0,
+    "L2 Phase Voltage":0,
+    "L3 Phase Voltage":230.50,
+    "L1 Phase Current":0,
+    "L2 Phase Current":0,
+    "L3 Phase Current":0.17,
+    "Reactive Power":-20,
+    "L1 Phase Power":0,
+    "L2 Phase Power":0,
+    "L3 Phase Power":-30,
+    "Full-Time Cumulative Grid-Connected Electric Energy":9.55,
+    "Accumulated Purchase Of Electric Energy In Full Time.":56.21,
+    "Installation Direction":"Vertical"
+  }
+  ```
+  </TabItem>
+</Tabs>
 
 > **方法：Meter.JsonData**
-> - 返回值：Json格式的电表数据。
+> - 返回值：JSON格式的电表数据。
 >
-> 单相电表Json数据
->
-> | 参数名               | 说明           | 单位 |
-> | -------------------- | -------------- | ---- |
-> | SN                   | 设备SN         | -    |
-> | current              | 电流           | A    |
-> | voltage              | 电压           | V    |
-> | frequency            | 交流频率       | Hz   |
-> | power factor         | 功率因数       | -    |
-> | active Power         | 正反向有功功率 | W    |
-> | apparent power       | 正反向视在功率 | W    |
-> | reactive power       | 正反向无功功率 | W    |
-> | total_act_energy     | 总正向有功电能 | kWh  |
-> | total_act_ret_energy | 总反向有功电能 | kWh  |
+<Tabs groupId="meter">
+  <TabItem value="single-phase" label="单相电表">
+| 参数名               | 说明           | 单位 |
+| -------------------- | -------------- | ---- |
+| SN                   | 设备SN         | -    |
+| current              | 电流           | A    |
+| voltage              | 电压           | V    |
+| frequency            | 交流频率       | Hz   |
+| power factor         | 功率因数       | %    |
+| active Power         | 正反向有功功率 | W    |
+| apparent power       | 正反向视在功率 | W    |
+| reactive power       | 正反向无功功率 | W    |
+| total_act_energy     | 总正向有功电能 | kWh  |
+| total_act_ret_energy | 总反向有功电能 | kWh  |
 
+  </TabItem>
+  <TabItem value="three-phase" label="三相电表">
+| 参数名               | 说明                  | 单位 |
+| -------------------- | --------------------- | ---- |
+| sn                   | 设备SN                | -    |
+| a_current            | 交流A相电流           | A    |
+| b_current            | 交流B相电流           | A    |
+| c_current            | 交流C相电流           | A    |
+| a_voltage            | 交流A相电压           | V    |
+| b_voltage            | 交流B相电压           | V    |
+| c_voltage            | 交流C相电压           | V    |
+| frequency            | 交流频率              | Hz   |
+| total_pf             | 交流总功率因数        | %    |
+| a_pf                 | 交流A相功率因数       | %    |
+| b_pf                 | 交流B相功率因数       | %    |
+| c_pf                 | 交流C相功率因数       | %    |
+| total_act_power      | 正反向交流有功总功率  | W    |
+| a_act_power          | 正反向交流A相有功功率 | W    |
+| b_act_power          | 正反向交流B相有功功率 | W    |
+| c_act_power          | 正反向交流C相有功功率 | W    |
+| total_aprt_power     | 正反向交流视在总功率  | W    |
+| a_aprt_power         | 正反向交流A相视在功率 | W    |
+| b_aprt_power         | 正反向交流B相视在功率 | W    |
+| c_aprt_power         | 正反向交流C相视在功率 | W    |
+| total_react_power    | 总反向无功功率        | W    |
+| a_react_power        | 正反向交流A相无功功率 | W    |
+| b_react_power        | 正反向交流B相无功功率 | W    |
+| c_react_power        | 正反向交流C相无功功率 | W    |
+| total_act_energy     | 总正向有功电能        | kWh  |
+| total_act_ret_energy | 总反向有功电能        | kWh  |
+| a_act_energy         | A相总正向有功电能     | kWh  |
+| a_act_ret_energy     | A相总反向有功电能     | kWh  |
+| b_act_energy         | B相总正向有功电能     | kWh  |
+| b_act_ret_energy     | B相总反向有功电能     | kWh  |
+| c_act_energy         | C相总正向有功电能     | kWh  |
+| c_act_ret_energy     | C相总反向有功电能     | kWh  |
+  </TabItem>
+  <TabItem value="ir-reader" label="近红外读表器">
+| Parameter                                            | Description        | 单位 |
+| ---------------------------------------------------- | ------------------ | ---- |
+| SN                                                   | 设备SN             | -    |
+| SN2                                                  | 读取的电表SN       | -    |
+| Total Active Power                                   | 总有功功率         | W    |
+| L1 Phase Voltage                                     | L1 相电压          | V    |
+| L2 Phase Voltage                                     | L2 相电压          | V    |
+| L3 Phase Voltage                                     | L3 相电压          | V    |
+| L1 Phase Current                                     | L1 相电流          | A    |
+| L2 Phase Current                                     | L2 相电流          | A    |
+| L3 Phase Current                                     | L3 相电流          | A    |
+| Reactive Power                                       | 无功功率           | W    |
+| L1 Phase Power                                       | L1 相功率          | W    |
+| L2 Phase Power                                       | L2 相功率          | W    |
+| L3 Phase Power                                       | L3 相功率          | W    |
+| Full-Time Cumulative Grid-Connected Electric Energy  | 全时段累计并网电能 | kWh  |
+| Accumulated Purchase Of Electric Energy In Full Time | 全时段累计购电电能 | kWh  |
+| Installation Direction                               | 读表器安装方向     | -    |
+  </TabItem>
+</Tabs>
+
+:::info
+近红外读表器获取的数据直接来源于仪表本身，其具体内容和格式因而完全取决于仪表的型号、通信协议及制造商。
+:::
 
 ## 六、设备
 
@@ -611,26 +815,88 @@ GET http://192.168.31.213:8080/rpc/Meter.JsonData
 
 P1读表器（P1-2W）通过RJ12接口与单台P1电表直连，持续采集电表工作状态与用电数据，实现对电表系统的长效监控。该设备将采集的数据通过WiFi无线传输至本地或云端平台，通过可视化图表动态呈现电表实时状态与历史用电趋势。
 
-P1读表器支持以下组件功能：
-- Sys
-- P1
+<table><thead>
+  <tr>
+    <th>型号</th>
+    <th>支持组件</th>
+  </tr></thead>
+<tbody>
+  <tr>
+    <td rowspan="2">P1-2W</td>
+    <td>[Sys](#sys)</td>
+  </tr>
+  <tr>
+    <td>[P1](#p1)</td>
+  </tr>
+</tbody>
+</table>
 
 ### 智能计量插座
 
 智能计量插座（SP-2W-EU）适用于各种家庭用电场景，具备双向计量和远程控制功能。通过WiFi连接，实时上传能耗数据至本地/云端平台。用户可通过手机或电脑远程控制插座来通断连接电器，并监控电器的使用情况，从而实现能效管理自动化。
 
-智能计量插座支持以下组件功能：
-- Sys
-- Plug
+<table><thead>
+  <tr>
+    <th>型号</th>
+    <th>支持组件</th>
+  </tr></thead>
+<tbody>
+  <tr>
+    <td rowspan="2">SP-2W-EU</td>
+    <td>[Sys](#sys)</td>
+  </tr>
+  <tr>
+    <td>[Plug](#plug)</td>
+  </tr>
+</tbody>
+</table>
 
 ### 智能导轨电表
 
 智能导轨电表专为户用及小型工商业双向电能计量设计，采用开口式互感器接入，符合DIN 35mm导轨安装标准。通过WiFi/Ethernet连接，实时上传数据至本地或远程软件平台，实现电能使用的详细监测与分析。
 
-智能导轨电表包含以下型号（其中MR1对应单相电表，MR3对应三相电表）：
-- MR1-D5-WR
-- MR1-D5-W
+<table><thead>
+  <tr>
+    <th>型号</th>
+    <th>支持组件</th>
+  </tr></thead>
+<tbody>
+  <tr>
+    <td rowspan="2">MR1-D5-WR<br />MR1-D5-W<br />MR1-D4-WRE<br />MR3-D4-WRE<br />MR1-D4-WE<br />MR3-D4-WE<br />MR1-D3-W<br />MR3-D3-W</td>
+    <td>[Sys](#sys)</td>
+  </tr>
+  <tr>
+    <td>[Meter](#meter)</td>
+  </tr>
+</tbody>
+</table>
 
-智能导轨电表支持以下组件功能：
-- Sys
-- Meter
+注：MR1对应单相电表，MR3对应三相电表。
+
+### 近红外读表器
+
+近红外读表器主要通过采集红外电表的工作状态和用电情况对电表系统进行长期而有效的监控。通过“红外接口”与单台红外电表连接，从电表端接收用电的各项信息，并通过WiFi的方式将数据传输至本地或远程软件平台，电表的实时状态以及历史数据都能以图表方式呈现，直观、清晰易懂，用户实现随时随地监控电表系统，极大地简化了维护工作。
+
+<table><thead>
+  <tr>
+    <th>型号</th>
+    <th>支持组件</th>
+  </tr></thead>
+<tbody>
+  <tr>
+    <td rowspan="2">NIR-1<br />NIR-3</td>
+    <td>[Sys](#sys)</td>
+  </tr>
+  <tr>
+    <td>[Meter](#meter)</td>
+  </tr>
+</tbody>
+</table>
+
+## 七、FAQ
+
+| 问题                             | 原因及解决办法                                                                                                                                                                                         |
+| -------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| HTTP 访问返回 401 Unauthorized   | 1. 检查Digest认证的用户名和密码是否正确。<br />2. 首次使用/恢复出厂设置的设备只支持访问指定接口（`User.SetConfig`）。详情请见[Digest认证](#digest认证)，修改密码成功后用新密码认证即可正常使用其他接口。 |
+| 发送广播指令后设备未返回 IP 地址 | OpenData API尚未开启，导致该功能不可用。详情请见开启API。                                                                                                                                              |
+| 获取数据失败                     | 1.检查设备是否开启。<br />2.检查设备与电脑是否连接同一个局域网。                                                                                                                                       |

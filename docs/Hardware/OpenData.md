@@ -17,28 +17,28 @@ OpenData is a lightweight communication framework designed for WiFi-based Solarm
 ### Use Cases
 
 1. **Push Device Data (UDP)**
-    - Unencrypted: UDP broadcast to `255.255.255.255`
+    - UDP broadcast to `255.255.255.255`
     - Device Key Encrypted: UDP broadcast to `255.255.255.255` (Coming soon)
 
 2. **Receive External Query Requests (HTTP/HTTPS)**
-    - HTTP: No encryption/authentication, plaintext transmission
-    - HTTP + Digest: Digest authentication
-    - HTTPS: TLS/SSL encryption (Coming soon)
+    - HTTP
+    - HTTP + Digest
+    - HTTPS (Coming soon)
 
 <img src={require("./img/opendata_use_cases.png").default} width="400"/>
 
 ## 2. Preparation
 
-### 1. Install Tools
+### 2.1 Install Tools
 
-- Network debugging tool (e.g., [NetAssist](https://www.cmsoft.cn/resource/102.html)): For receiving UDP broadcasts.
-- [Postman](https://www.getpostman.com/): For calling HTTP APIs to get device info or update configurations.
+- For receiving UDP broadcasts: Any network debugging tool (such as [NetAssist](https://www.cmsoft.cn/resource/102.html)) can be used.
+- For sending HTTP requests: The [Postman](https://www.getpostman.com/) GUI tool or the cURL command-line tool can be used.
 
-### 2. Enable API
+### 2.2 Enable API
 
 Device API functionality is **disabled by default** and must be manually enabled before use.
 
-### 3. Obtain IP Address
+### 2.3 Obtain IP Address
 
 Choose one of the following four methods:
 
@@ -67,7 +67,7 @@ Choose one of the following four methods:
    <img src={require("./img/click_open.png").default} width="200"/>
 
 7. Set remote host to broadcast address: **255.255.255.255:8099**.
-   ![enter_ip_port.png](./img//enter_ip_port.png)
+    <img src={require("./img/enter_ip_port.png").default} width="400"/>
 
 8. Enter AT command in message box: **AT+IGDEVICEIP**.
    <img src={require("./img/enter_at_command.png").default} width="400"/>
@@ -78,13 +78,59 @@ Choose one of the following four methods:
     <img src={require("./img/return_ip_sn.png").default} width="400"/>
 </details>
 
+### 2.4 Check Firmware Version
+
+
+To confirm whether the firmware version of the device meets the requirements based on the device model, you can view the firmware version information through any of the following methods:
+- Go to SOLARMAN Smart / Energy Ease App and check device info.
+- Send HTTP request and call [Sys.GetConfig](#sys) to get configuration info.
+
+
+<table><thead>
+  <tr>
+    <th>Device</th>
+    <th>Model</th>
+    <th>Firmware Version (Minimum)</th>
+  </tr></thead>
+<tbody>
+  <tr>
+    <td>P1 Meter Reader</td>
+    <td>P1-2W</td>
+    <td>V1.3.0A_R003.001_MP12W_00000013</td>
+  </tr>
+  <tr>
+    <td>Smart Plug</td>
+    <td>SP-2W-EU</td>
+    <td>V1.3.0A_R002.001_MSP2W_00000010</td>
+  </tr>
+  <tr>
+    <td rowspan="3">Smart Meter</td>
+    <td>MR1-D5-WR<br />MR1-D5-W</td>
+    <td>V1.3.0A_R00B.032_M051A_00000015</td>
+  </tr>
+  <tr>
+    <td>MR1-D4-WRE<br />MR3-D4-WRE<br />MR1-D4-WE<br />MR3-D4-WE</td>
+    <td>V1.3.0A_R009.002_M0000_00000016</td>
+  </tr>
+  <tr>
+    <td>MR1-D3-W<br />MR3-D3-W</td>
+    <td>V1.3.07_R00A.002_M0515_00000017</td>
+  </tr>
+  <tr>
+    <td>IR Reader</td>
+    <td>NIR-1<br />NIR-3</td>
+    <td>V1.4.01_R016.052_M0000_00000013</td>
+  </tr>
+</tbody>
+</table>
+
 ## 3. UDP Usage Guide
 
 ### Enable Functionality
 
 UDP is **disabled by default** and must be manually enabled.
 
-### Unencrypted UDP
+### UDP
 
 For devices supporting UDP broadcast, receive UDP packets to obtain device information.
 
@@ -130,12 +176,12 @@ Coming soon
 
 ### Request Structure
 
-#### Request Methods
+**Request Methods**
 
 - **GET**: Request specified resource from server.
 - **POST**: Request server to perform an action.
 
-#### Request Address
+**Request Address**
 
 ```
 http://{IP_ADDRESS}:8080/rpc/{API}
@@ -146,7 +192,7 @@ where:
 - `{IP_ADDRESS}`: Device IP address.
 - `{API}`: HTTP API to call.
 
-### Request Examples
+**Request Examples**
 
 - Get device info:
 
@@ -158,6 +204,20 @@ GET http://192.168.31.213:8080/rpc/Sys.GetConfig
 
 ```
 POST http://192.168.31.213:8080/rpc/Sys.SetConfig?config={"device":{"hostname":"admin"}}
+```
+
+**cURL Command Example**
+
+- Obtain device info:
+
+```
+curl http://192.168.31.213:8080/rpc/Sys.GetConfig 
+```
+
+- Modify device name:
+
+```
+curl -g -X POST -H "Content-Type: application/json" "http://192.168.31.213:8080/rpc/Sys.SetConfig?config={\"device\":{\"hostname\":\"admin\"}}"
 ```
 
 ### Digest Authentication
@@ -216,11 +276,9 @@ In HTTP+Digest mode, devices after first use or factory reset require default pa
   where:
     - `{IP_ADDRESS}`：Device IP address.
     - `{PASSWORD}`: AES128-GCM encrypted ciphertext (Base64).
-
   ![post_request.png](./img/post_request.png)
 
 7. Click **Send**.
-
   ![success.png](./img/success.png)
 
   > &#x2705; **Success**
@@ -230,10 +288,10 @@ In HTTP+Digest mode, devices after first use or factory reset require default pa
 #### Request Other APIs
 
 1. Select **Authorization** tab in Postman.
-  <img src={require("./img/select_authorization.png").default} width="400"/>
+    <img src={require("./img/select_authorization.png").default} width="400"/>
 
 2. Choose **Digest Auth**.
-  <img src={require("./img/select_digest.png").default} width="300"/>
+    <img src={require("./img/select_digest.png").default} width="300"/>
 
 3. Fill parameters:
 
@@ -247,7 +305,7 @@ In HTTP+Digest mode, devices after first use or factory reset require default pa
 | qop          | auth                      |
 | Nonce Count  | Random value              |
 | Client Nonce | Random value              |
-| Opaque       | (Leave empty)             |
+| Opaque       | Leave empty               |
 
 ### HTTPS
 
@@ -274,11 +332,12 @@ Coming soon
 
 ## 5. HTTP API
 
-| Component     | Description                                     |
-| ------------- | ----------------------------------------------- |
-| [Sys](#sys)   | Device model, firmware version, etc.            |
-| [P1](#p1)     | Read gas/electricity data from P1 meter reader. |
-| [Plug](#plug) | Read power metrics and control smart sockets.   |
+| Component       | Description                                     |
+| --------------- | ----------------------------------------------- |
+| [Sys](#sys)     | Device model, firmware version, etc.            |
+| [P1](#p1)       | Read gas/electricity data from P1 meter reader. |
+| [Plug](#plug)   | Read power metrics and control smart sockets.   |
+| [Meter](#meter) | Read the electricity meter data.                |
 
 ### Sys
 
@@ -369,6 +428,7 @@ POST http://192.168.31.213:8080/rpc/Sys.SetConfig?config={"device":{"hostname":"
 | time_stamp | int    | Unix timestamp                     | R   |
 | run_time   | int    | Uptime (seconds)                   | R   |
 
+---
 
 ### P1
 
@@ -493,6 +553,8 @@ GET http://192.168.31.213:8080/rpc/P1.GetData
 >
 > - Returns: Raw meter data.
 
+---
+
 ### Plug
 
 #### Get Power Consumption
@@ -588,6 +650,7 @@ POST http://192.168.31.213:8080/rpc/Plug.SetStatus?config={"switch_status":"on"}
 | Active power                    | float  | Active power              | W    | R   |
 | switch_status                   | string | `on`: open, `off`: closed | -    | R/W |
 
+---
 
 ### Meter
 
@@ -601,40 +664,173 @@ GET http://192.168.31.213:8080/rpc/Meter.JsonData
 
 - Response Example
 
-```json
-{
-    "SN": "3310500113",
-    "voltage": 229.87,
-    "current": 0.66,
-    "active power": 133.50,
-    "apparent power": 209.60,
-    "reactive power": -29.80,
-    "power factor": 0.63,
-    "frequency": 50.03,
-    "total_act_energy": 3.53,
-    "total_act_ret_energy": 0.18
-}
-```
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+<Tabs groupId="meter">
+  <TabItem value="single-phase" label="Single-phase meter">
+  ```json
+  {
+      "SN": "3310500113",
+      "voltage": 229.87,
+      "current": 0.66,
+      "active power": 133.50,
+      "apparent power": 209.60,
+      "reactive power": -29.80,
+      "power factor": 0.63,
+      "frequency": 50.03,
+      "total_act_energy": 3.53,
+      "total_act_ret_energy": 0.18
+  }
+  ```
+  </TabItem>
+  <TabItem value="three-phase" label="Three-phase meter">
+  ```json
+  {
+      "data": {
+          "sn": "3310290536",
+          "a_current": 0,
+          "b_current": 0,
+          "c_current": 0.54,
+          "a_voltage": 0,
+          "b_voltage": 0,
+          "c_voltage": 231,
+          "frequency": 49.73,
+          "total_pf": 73.30,
+          "a_pf": 100,
+          "b_pf": 100,
+          "c_pf": 73.30,
+          "total_act_power": 95,
+          "a_act_power": 0,
+          "b_act_power": 0,
+          "c_act_power": 93,
+          "total_aprt_power": 124,
+          "a_aprt_power": 0,
+          "b_aprt_power": 0,
+          "c_aprt_power": 124,
+          "total_react_power": -27,
+          "a_react_power": 0,
+          "b_react_power": 0,
+          "c_react_power": -27,
+          "total_act_energy": 29.57,
+          "total_act_ret_energy": 10.15,
+          "a_act_energy": 12.69,
+          "b_act_energy": 0,
+          "c_act_energy": 16.87,
+          "a_act_ret_energy": 0,
+          "b_act_ret_energy": 0,
+          "c_act_ret_energy": 10.14
+      }
+  }
+  ```
+  </TabItem>
+  <TabItem value="ir-reader" label="IR Reader">
+  ```json
+  {
+    "SN":"3320730586",
+    "SN2":"56197869",
+    "Total Active Power":-30,
+    "L1 Phase Voltage":0,
+    "L2 Phase Voltage":0,
+    "L3 Phase Voltage":230.50,
+    "L1 Phase Current":0,
+    "L2 Phase Current":0,
+    "L3 Phase Current":0.17,
+    "Reactive Power":-20,
+    "L1 Phase Power":0,
+    "L2 Phase Power":0,
+    "L3 Phase Power":-30,
+    "Full-Time Cumulative Grid-Connected Electric Energy":9.55,
+    "Accumulated Purchase Of Electric Energy In Full Time.":56.21,
+    "Installation Direction":"Vertical"
+  }
+  ```
+  </TabItem>
+</Tabs>
 
 > **Method: Meter.JsonData**
 >
 > - Returns: JSON-formatted meter data.
 >
-> Single-phase Meter JSON Data
->
-> | Parameter            | Description                    | Unit |
-> | -------------------- | ------------------------------ | ---- |
-> | SN                   | Device SN                      | -    |
-> | current              | Current                        | A    |
-> | voltage              | Voltage                        | V    |
-> | frequency            | AC frequency                   | Hz   |
-> | power factor         | Power factor                   | -    |
-> | active Power         | Forward/Reverse active power   | W    |
-> | apparent power       | Forward/Reverse apparent power | W    |
-> | reactive power       | Forward/Reverse reactive power | W    |
-> | total_act_energy     | Total forward active energy    | kWh  |
-> | total_act_ret_energy | Total reverse active energy    | kWh  |
+<Tabs groupId="meter">
+  <TabItem value="single-phase" label="Single-phase meter ">
 
+| Parameter            | Description                    | Unit |
+| -------------------- | ------------------------------ | ---- |
+| SN                   | Device SN                      | -    |
+| current              | Current                        | A    |
+| voltage              | Voltage                        | V    |
+| frequency            | AC frequency                   | Hz   |
+| power factor         | Power factor                   | -    |
+| active Power         | Forward/Reverse active power   | W    |
+| apparent power       | Forward/Reverse apparent power | W    |
+| reactive power       | Forward/Reverse reactive power | W    |
+| total_act_energy     | Total forward active energy    | kWh  |
+| total_act_ret_energy | Total reverse active energy    | kWh  |
+
+
+  </TabItem>
+  <TabItem value="three-phase" label="Three-phase meter ">
+| Parameter            | Description                               | Unit |
+| -------------------- | ----------------------------------------- | ---- |
+| sn                   | Device SN                                 | -    |
+| a_current            | AC Phase A Current                        | A    |
+| b_current            | AC Phase B Current                        | A    |
+| c_current            | AC Phase C Current                        | A    |
+| a_voltage            | AC Phase A Voltage                        | V    |
+| b_voltage            | AC Phase B Voltage                        | V    |
+| c_voltage            | AC Phase C Voltage                        | V    |
+| frequency            | AC Frequency                              | Hz   |
+| total_pf             | Total AC Power Factor                     | %    |
+| a_pf                 | AC Phase A Power Factor                   | %    |
+| b_pf                 | AC Phase B Power Factor                   | %    |
+| c_pf                 | AC Phase C Power Factor                   | %    |
+| total_act_power      | Forward/Reverse Total AC Active Power     | W    |
+| a_act_power          | Forward/Reverse AC Phase A Active Power   | W    |
+| b_act_power          | Forward/Reverse AC Phase B Active Power   | W    |
+| c_act_power          | Forward/Reverse AC Phase C Active Power   | W    |
+| total_aprt_power     | Forward/Reverse Total AC Apparent Power   | W    |
+| a_aprt_power         | Forward/Reverse AC Phase A Apparent Power | W    |
+| b_aprt_power         | Forward/Reverse AC Phase B Apparent Power | W    |
+| c_aprt_power         | Forward/Reverse AC Phase C Apparent Power | W    |
+| total_react_power    | Total Reverse Reactive Power              | W    |
+| a_react_power        | Forward/Reverse AC Phase A Reactive Power | W    |
+| b_react_power        | Forward/Reverse AC Phase B Reactive Power | W    |
+| c_react_power        | Forward/Reverse AC Phase C Reactive Power | W    |
+| total_act_energy     | Total Forward Active Energy               | kWh  |
+| total_act_ret_energy | Total Reverse Active Energy               | kWh  |
+| a_act_energy         | Phase A Total Forward Active Energy       | kWh  |
+| a_act_ret_energy     | Phase A Total Reverse Active Energy       | kWh  |
+| b_act_energy         | Phase B Total Forward Active Energy       | kWh  |
+| b_act_ret_energy     | Phase B Total Reverse Active Energy       | kWh  |
+| c_act_energy         | Phase C Total Forward Active Energy       | kWh  |
+| c_act_ret_energy     | Phase C Total Reverse Active Energy       | kWh  |
+  </TabItem>
+  <TabItem value="ir-reader" label="IR Reader">
+| Parameter                                            | Description                            | Unit |
+| ---------------------------------------------------- | -------------------------------------- | ---- |
+| SN                                                   | Device SN                              | -    |
+| SN2                                                  | Meter SN                               | -    |
+| Total Active Power                                   | Total Active Power                     | W    |
+| L1 Phase Voltage                                     | L1-Phase Voltage                       | V    |
+| L2 Phase Voltage                                     | L2-Phase Voltage                       | V    |
+| L3 Phase Voltage                                     | L3-Phase Voltage                       | V    |
+| L1 Phase Current                                     | L1-Phase Current                       | A    |
+| L2 Phase Current                                     | L2-Phase Current                       | A    |
+| L3 Phase Current                                     | L3-Phase Current                       | A    |
+| Reactive Power                                       | Reactive Power                         | W    |
+| L1 Phase Power                                       | L1-Phase Power                         | W    |
+| L2 Phase Power                                       | L2-Phase Power                         | W    |
+| L3 Phase Power                                       | L3-Phase Power                         | W    |
+| Full-Time Cumulative Grid-Connected Electric Energy  | Accumulated Grid-connected Electricity | kWh  |
+| Accumulated Purchase Of Electric Energy In Full Time | Accumulated Energy-purchased           | kWh  |
+| Installation Direction                               | Reader Installation Direction          | -    |
+  </TabItem>
+</Tabs>
+
+:::info
+The data obtained by the IR Reader comes directly from the device itself, and its specific content and format depend entirely on the device model, communication protocol, and manufacturer.
+:::
 
 ## 6. Devices
 
@@ -642,30 +838,88 @@ GET http://192.168.31.213:8080/rpc/Meter.JsonData
 
 The P1 Reader (P1-2W) connects directly to a single P1 meter via RJ12 interface, continuously collecting meter status and electricity data for long-term monitoring. It transmits data over WiFi to local/cloud platforms, visualizing real-time status and historical trends.
 
-Supported Components:
-
-- Sys
-- P1
+<table><thead>
+  <tr>
+    <th>Model</th>
+    <th>Supported API</th>
+  </tr></thead>
+<tbody>
+  <tr>
+    <td rowspan="2">P1-2W</td>
+    <td>[Sys](#sys)</td>
+  </tr>
+  <tr>
+    <td>[P1](#p1)</td>
+  </tr>
+</tbody>
+</table>
 
 ### Smart Plug
 
 The Smart Plug (SP-2W-EU) supports home energy monitoring with bidirectional metering and remote control. It uploads energy data via WiFi, allowing users to remotely control appliances and monitor usage via apps.
 
-Supported Components:
-
-- Sys
-- Plug
+<table><thead>
+  <tr>
+    <th>Model</th>
+    <th>Supported API</th>
+  </tr></thead>
+<tbody>
+  <tr>
+    <td rowspan="2">SP-2W-EU</td>
+    <td>[Sys](#sys)</td>
+  </tr>
+  <tr>
+    <td>[Plug](#plug)</td>
+  </tr>
+</tbody>
+</table>
 
 ### Meter
 
 The meter is designed for residential/small commercial bidirectional metering. It is installed on DIN rails (35mm) using split-core CTs and uploads data via WiFi/Ethernet for detailed energy analysis.
 
-Models (MR1: Single-phase, MR3:Three-phase):
+<table><thead>
+  <tr>
+    <th>Model</th>
+    <th>Supported API</th>
+  </tr></thead>
+<tbody>
+  <tr>
+    <td rowspan="2">MR1-D5-WR<br />MR1-D5-W<br />MR1-D4-WRE<br />MR3-D4-WRE<br />MR1-D4-WE<br />MR3-D4-WE<br />MR1-D3-W<br />MR3-D3-W</td>
+    <td>[Sys](#sys)</td>
+  </tr>
+  <tr>
+    <td>[Meter](#meter)</td>
+  </tr>
+</tbody>
+</table>
 
-- MR1-D5-WR
-- MR1-D5-W
+Note: MR1 corresponds to single-phase meters, and MR3 corresponds to three-phase meters.
 
-Supported Components:
+### IR Reader
 
-- Sys
-- Meter
+The IR Reader primarily monitor the electricity system long-term and effectively by collecting data on the operating status and consumption data. Connecting to a single infrared meter via an infrared interface, the IR Reader receive various consumption information from the meter and transmit the data to a local or remote software platform via WiFi. The meter's real-time status and historical data are presented in graphical form, making them intuitive, clear, and easy to understand. Users can monitor the meter system anytime, anywhere, greatly simplifying maintenance.
+
+<table><thead>
+  <tr>
+    <th>Model</th>
+    <th>Supported API</th>
+  </tr></thead>
+<tbody>
+  <tr>
+    <td rowspan="2">NIR-1<br />NIR-3</td>
+    <td>[Sys](#sys)</td>
+  </tr>
+  <tr>
+    <td>[Meter](#meter)</td>
+  </tr>
+</tbody>
+</table>
+
+## 7. FAQ
+
+| Questions      | Reasons and solutions                             |
+| -------------------------------- | --------------------------------------------- |
+| HTTP access returns 401 Unauthorized.   | 1. Check whether the Digest authentication username and password are correct.<br />2. Devices on first use or after factory reset can only access the `User.SetConfig` interface. See [Digest authentication](#digest-authentication). Once you change the password successfully, full access to all interfaces is restored.|
+| The device did not return the IP address after sending the broadcast command. | The OpenData API has not yet been enabled, resulting in this feature being unavailable. For details, please refer to [Enable API](#22-enable-api).      |
+| Failed to retrieve data.           | 1. Check whether the device is turned on.<br />2. Check whether the device is connected to the same local area network as the computer.   |
