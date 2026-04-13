@@ -47,7 +47,7 @@ description: 按步骤完成网关安装与接线，快速开始使用
 
 ### 3.1 连接网线
 
-使用 RJ45 网线连接 EMH-2 **WAN口** → 路由器 **LAN口**
+使用 RJ45 网线连接 EMH-2 **WAN口**与路由器 **LAN口**
 
 <img src={require("./img/connection_router.png").default} width="240" /> 
 
@@ -63,21 +63,21 @@ description: 按步骤完成网关安装与接线，快速开始使用
 
 **连接充电桩（如有）**
 
-使用 RJ45 网线连接 EMH-2 的 LAN 口 → 充电桩
+使用 RJ45 网线将 EMH-2 的 LAN 口连接至充电桩
 <img src={require("./img/connection_charger.png").default} width="480" /> 
 
 
 **连接 P1 电表（如有）**
 
-使用 RJ12 信号线连接 EMH-2 P1 接口 → 电表 P1 接口  
+使用 RJ12 信号线连接 EMH-2 P1 接口与电表 P1 接口  
 
 <img src={require("./img/connection_meter.png").default} width="240" /> 
 
 **连接逆变器**
 
 将 RS485 通信线接入 8Px2 端子：
-- RS485 A 线 -> 连接到端子上的 A 端口
-- RS485 B 线 -> 连接到端子上的 B 端口
+- RS485 A 线连接到端子上的 A 端口
+- RS485 B 线连接到端子上的 B 端口
 
 :::warning
 请确保 A/B 线序连接正确，且必须接在**同一组端子**（如 A1/B1），否则通信将无法建立。
