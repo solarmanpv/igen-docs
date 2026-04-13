@@ -34,7 +34,7 @@ const sidebars: SidebarsConfig = {
       ],
     },
     // 'EMH-2/integration',
-    // 'EMH-2/tech-specs',
+    'EMH-2/tech-specs',
     // 'EMH-2/compatibility',
     // 'EMH-2/faq',
     // 'EMH-2/maintenance',

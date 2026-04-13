@@ -17,7 +17,7 @@ description: todo
 | ---- | -------- | --------------------------------------- |
 | ⑴    | 产品标识 | EMH：家庭能源管理中心                   |
 | ⑵    | 产品代际 | 2：第2代产品                            |
-| ⑶    | 通信方式 | - R：支持LoRa通信<br / >- G：支持4G通信 |
+| ⑶    | 通信方式 | R：支持LoRa通信<br / >G：支持4G通信 |
  
 ## 2. 应用场景
 
@@ -184,42 +184,42 @@ EMH-2尺寸（单位：mm，尺寸精度 ±2%）
     <td>熄灭</td>
   </tr>
   <tr>
-    <td> <img src={require("./img/power.png").default} width="25" style={{verticalAlign: "middle"}}/> </td>
+    <td style={{ textAlign: "center" }}> <img src={require("./img/power.png").default} width="25" style={{verticalAlign: "middle"}}/> </td>
     <td>电源指示灯/系统运行状态指示灯</td>
     <td>1. 上电后6个灯亮30s，后熄灭，表示上电成功<br />2. 常亮代表程序系统异常</td>
     <td>系统程序正常运行</td>
     <td>上电失败/程序异常</td>
   </tr>
   <tr>
-    <td> <img src={require("./img/cloud.png").default} width="40" style={{verticalAlign: "middle"}}/> </td>
+    <td style={{ textAlign: "center" }}> <img src={require("./img/cloud.png").default} width="40" style={{verticalAlign: "middle"}}/> </td>
     <td>服务器连接状态指示灯</td>
     <td>连接服务器成功</td>
     <td>正在连接服务器</td>
     <td>连接服务器失败</td>
   </tr>
   <tr>
-    <td> <img src={require("./img/net.png").default} width="30" style={{verticalAlign: "middle"}}/> </td>
+    <td style={{ textAlign: "center" }}> <img src={require("./img/net.png").default} width="30" style={{verticalAlign: "middle"}}/> </td>
     <td>路由器/基站连接状态指示灯</td>
     <td>连接成功</td>
     <td>连接中</td>
     <td>4G功能关闭/连接失败</td>
   </tr>
   <tr>
-    <td> <img src={require("./img/lora.png").default} width="30" style={{verticalAlign: "middle"}}/> </td>
+    <td style={{ textAlign: "center" }}> <img src={require("./img/lora.png").default} width="30" style={{verticalAlign: "middle"}}/> </td>
     <td>LoRa指示灯</td>
     <td>采集器与LoRa子设备连接状态指示灯/兼容蓝牙连接指示灯,常亮连接正常</td>
     <td>LoRa/蓝牙正常通信中</td>
     <td>连接失败</td>
   </tr>
   <tr>
-    <td> <img src={require("./img/com.png").default} width="80" style={{verticalAlign: "middle"}}/> </td>
+    <td style={{ textAlign: "center" }}> <img src={require("./img/com.png").default} width="80" style={{verticalAlign: "middle"}}/> </td>
     <td>串口指示灯</td>
     <td>RS485设备连接正常</td>
     <td>无</td>
     <td>连接失败</td>
   </tr>
   <tr>
-    <td> <img src={require("./img/p1.png").default} width="25" style={{verticalAlign: "middle"}}/> </td>
+    <td style={{ textAlign: "center" }}> <img src={require("./img/p1.png").default} width="25" style={{verticalAlign: "middle"}}/> </td>
     <td>P1指示灯</td>
     <td>连接正常</td>
     <td>无</td>
