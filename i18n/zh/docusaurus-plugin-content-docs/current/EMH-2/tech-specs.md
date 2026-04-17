@@ -56,7 +56,7 @@ description: todo
     <td colspan="2">内置4G天线：2dBi FPC</td>
   </tr>
   <tr>
-    <td rowspan="6">无线参数（LoRA）</td>
+    <td rowspan="6">无线参数（LoRa）</td>
     <td>工作频率</td>
     <td colspan="2">868MHz</td>
   </tr>
