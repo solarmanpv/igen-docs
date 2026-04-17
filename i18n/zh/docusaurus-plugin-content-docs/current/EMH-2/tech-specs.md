@@ -70,7 +70,7 @@ description: todo
   </tr>
   <tr>
     <td>发射功率</td>
-    <td colspan="2">最大+22dBm</td>
+    <td colspan="2">默认+14dBm（最大+22dBm）</td>
   </tr>
   <tr>
     <td>扩频因子</td>
@@ -129,7 +129,7 @@ description: todo
   <tr>
     <td rowspan="25">硬件参数</td>
     <td>工作电压</td>
-    <td colspan="2">DC5V±7%</td>
+    <td colspan="2">DC5V±5%</td>
   </tr>
   <tr>
     <td>工作功率</td>
@@ -248,7 +248,7 @@ description: todo
   </tr>
   <tr>
     <td>串口通信速率</td>
-    <td colspan="2">115200bps<br />（1200-115200bps可调）</td>
+    <td colspan="2">9600bps<br />（1200-9600bps可调）</td>
   </tr>
   <tr>
     <td>数据采集间隔</td>
@@ -260,7 +260,7 @@ description: todo
   </tr>
   <tr>
     <td rowspan="2">用户配置</td>
-    <td colspan="2">本地Web配置、APP配置</td>
+    <td colspan="2">本地Web配置</td>
   </tr>
   <tr>
     <td colspan="2">远程服务器配置</td>
