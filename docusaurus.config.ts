@@ -60,13 +60,13 @@ const config: Config = {
           sidebarPath: "./sidebars.ts",
           // Please change this to your repo.
           // Remove this to remove the "edit this page" links.
-          editUrl: "https://github.com/xcccxvvv/test-site/tree/main",
+          editUrl: "https://github.com/solarmanpv/igen-docs/tree/main",
         },
         blog: {
           showReadingTime: true,
           // Please change this to your repo.
           // Remove this to remove the "edit this page" links.
-          editUrl: "https://github.com/xcccxvvv/test-site/tree/main",
+          editUrl: "https://github.com/solarmanpv/igen-docs/tree/main",
           // Useful options to enforce blogging best practices
           onInlineTags: "warn",
           onInlineAuthors: "warn",
@@ -83,8 +83,12 @@ const config: Config = {
   themeConfig: {
     // Replace with your project's social car
     image: "img/docusaurus-social-card.jpg",
+    docs: {
+      sidebar: {
+        hideable: true,
+      },
+    },
     navbar: {
-      title: "Developers",
       logo: {
         alt: "Developers",
         src: "img/light.svg",
@@ -95,7 +99,13 @@ const config: Config = {
           type: "docSidebar",
           sidebarId: "tutorialSidebar",
           position: "left",
-          label: "Documentation",
+          label: "EMH-2",
+        },
+        {
+          type: "docSidebar",
+          sidebarId: "apiSidebar",
+          position: "left",
+          label: "API",
         },
         {
           type: "localeDropdown",

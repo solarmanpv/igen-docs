@@ -1,18 +1,14 @@
 {
-  "title": {
-    "message": "开发者",
-    "description": "The title in the navbar"
-  },
   "logo.alt": {
     "message": "开发者",
     "description": "The alt text of navbar logo"
   },
-  "item.label.Documentation": {
-    "message": "文档",
-    "description": "Navbar item with label Documentation"
+  "item.label.EMH-2": {
+    "message": "EMH-2",
+    "description": "Navbar item with label EMH-2"
   },
-  "item.label.Blog": {
-    "message": "博客",
-    "description": "Navbar item with label Blog"
+  "item.label.API": {
+    "message": "API",
+    "description": "Navbar item with label API"
   }
 }

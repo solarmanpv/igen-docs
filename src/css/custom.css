@@ -137,13 +137,11 @@ html[data-theme="dark"] .theme-code-block {
 
 .markdown ol {
     list-style-type: decimal; /* shows 1, 2, 3 */
-    margin-left: 1.5em; /* adds indentation */
 }
 
 /* For unordered lists (dots/discs) */
 .markdown ul {
     list-style-type: disc;
-    margin-left: 1.5em;
 }
 
 article .markdown a.link {
@@ -168,7 +166,7 @@ article .markdown .alert {
 
 article .markdown img {
     border-radius: 10px;
-    display: flex;
+    display: inline-block;
     margin: 0 auto;
 }
 
@@ -214,10 +212,6 @@ article p > span > a {
     box-shadow: none;
 }
 
-.navbar-sidebar__items {
-    height: calc(100% - var(--ifm-navbar-height) - 444px);
-}
-
 @media (max-width: 570px) {
     h1 {
         font-size: 1.6em;
@@ -232,7 +226,7 @@ article p > span > a {
     }
 }
 
-@media (max-width: 1100px) {
+@media (max-width: 996px) {
     .navbar > .container,
     .navbar > .container-fluid {
         padding: 0;

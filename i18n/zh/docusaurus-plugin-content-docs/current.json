@@ -3,8 +3,8 @@
     "message": "Next",
     "description": "The label for version current"
   },
-  "sidebar.tutorialSidebar.category.Hardware": {
-    "message": "硬件",
-    "description": "The label for category Hardware in sidebar tutorialSidebar"
+  "sidebar.tutorialSidebar.category.Web Interface": {
+    "message": "Web页面",
+    "description": "The label for category Web Interface in sidebar tutorialSidebar"
   }
 }
