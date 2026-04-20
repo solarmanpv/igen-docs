@@ -1,6 +1,6 @@
 ---
-title: Support Devices
+title: Device Management
 description: todo
 ---
 
-# Support Devices
+# Device Management

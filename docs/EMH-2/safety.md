@@ -1,6 +1,6 @@
 ---
-title: Safety
+title: Safety Precautions
 description: todo
 ---
 
-# Safety
+# Safety Precautions
