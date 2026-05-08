@@ -4,7 +4,11 @@
     "description": "The label for version current"
   },
   "sidebar.tutorialSidebar.category.Web Interface": {
-    "message": "Web页面",
+    "message": "Web 页面",
     "description": "The label for category Web Interface in sidebar tutorialSidebar"
+  },
+  "sidebar.tutorialSidebar.category.App Usage": {
+    "message": "App 操作",
+    "description": "The label for category App Usage in sidebar tutorialSidebar"
   }
 }

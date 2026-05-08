@@ -33,6 +33,14 @@ const sidebars: SidebarsConfig = {
         'EMH-2/system',
       ],
     },
+    {
+      type: 'category',
+      label: 'App Usage',
+      collapsed: false,
+      items: [
+        'EMH-2/add-device',
+      ],
+    },
     // 'EMH-2/integration',
     'EMH-2/tech-specs',
     // 'EMH-2/compatibility',
