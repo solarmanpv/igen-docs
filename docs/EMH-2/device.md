@@ -17,8 +17,8 @@ The firmware architecture platform is a local system designed for monitoring and
 
 On first use, users can obtain the device login credentials from the device nameplate (located at the bottom of the device):
 
-- Device login username  
-- Initial password (default password)  
+- Login Username: `admin` (default)
+- Initial password: Refer to the KEY field on the nameplate
 - Device serial number (SN)  
 
 
