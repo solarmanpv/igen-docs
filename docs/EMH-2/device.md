@@ -153,144 +153,20 @@ On the system homepage, hover over the <img src={require("./img/language_icon.pn
 
 ---
 
-## 3. Device Access Configuration
-
-Device access in the system is a prerequisite for energy data collection and management. Users can integrate field devices into the platform for centralized management via the “Add Device” function.
-
-### 3.1 Add Device (Basic Information Configuration)
-
-After logging into the system, go to the **HEMS Configuration** module. Under the **Energy equipment** tab, click the **Add Device** button in the upper-right corner. The “Add Device” window will appear.
-
-**Page Function Description**
-
-1. Click **Refresh support list** to update the currently supported device types and models. This ensures the latest device library is available for selection.
-2. Users must complete the following fields:
-
-| Parameter | Description |
-|----------|-------------|
-| Device Type | Select the category of the device (e.g., inverter, meter, energy storage system). This determines the available brands and models. |
-| Equipment Brand | Select the manufacturer or brand name of the device. |
-| Device Model | Select the corresponding model under the chosen brand. |
-| Device Port | Refers to the communication interface or channel used by the device (e.g., RS485, P1, LAN, LoRa). It is used to establish data communication between the device and the system. |
-
-:::warning
-- Ensure the selected device model matches the actual device; otherwise, communication may fail.  
-- If the required model is not found, click “Refresh support list” to update the device library.  
-- The device port must match the actual wiring method and communication protocol.  
-- Ensure the device is powered on and ready for communication before adding it.  
-:::
-
-
-### 3.2 Communication Parameter Settings
-
-After completing the basic device information, click **Next step** to enter the communication parameter configuration page. This page is used to define communication settings between the device and the system and is critical for successful data acquisition.
-
-**Parameter Description**
-
-:::note
-This configuration page is dynamically generated based on different device brands and models. The following example shows inverter configuration parameters.
-:::
-
-Users must configure the following parameters according to the actual device communication settings:
-
-| Parameter | Description |
-|----------|-------------|
-| Baud Rate | Communication speed in bps (e.g., 1200, 2400, 4800, 9600). |
-| Parity | Data verification method:<br />- NONE (no parity)<br />- EVEN (even parity)<br />- ODD (odd parity) |
-| Data Bits | Length of valid data bits per frame, typically 5, 6, 7, or 8 bits. |
-| Stop Bits | Indicates the end of a data frame, typically 1 or 2 bits. |
-| Communication Address | The device address on the communication bus (e.g., Modbus address).<br />**Note:** Each device on the same bus must have a unique address. Default is usually 1, depending on device configuration. |
-
-After completing the configuration, click **Confirm** to add the device. To modify previous settings, click **Previous** to return.
-
-:::warning
-- Communication parameters must exactly match the device settings; otherwise, the device cannot be recognized.  
-- On the same RS485 bus, the **communication address must be unique**.  
-- If communication fails, check the following first:  
-  - Baud rate consistency  
-  - Correct device address  
-  - Proper wiring (A/B polarity)  
-:::
-
-:::info
-If you need to add more devices, repeat the steps above. A maximum of **10 devices** can be added.
-:::
-
-
-### 3.3 Device Access Status and Management
-
-After completing device addition and communication configuration, the system returns to the **Energy equipment** list page. Successfully added devices are displayed as cards.
-
-#### Device Status Description
-
-After adding a device, it will appear in the list by default. However, some functions (such as data viewing) are only available after successful communication is established.
-
-Users can click the refresh icon in the upper-right corner <img src={require("./img/refresh_icon.png").default} width="50" style={{verticalAlign: "middle"}}/> to update device status and available functions.
-
-<img src={require("./img/device_list.png").default} width="960" />
-
-
-#### Device Card Information
-
-Each device is displayed as a card containing the following information:
-
-- Device ID / SN  
-- Device Type  
-- Brand Information  
-- Device Model  
-
-This allows quick identification of connected devices.
-
-<img src={require("./img/device_card.png").default} width="360" />
-
-
-#### Function Buttons
-
-Each device card provides the following actions:
-
-**1️⃣ Edit Device** <img src={require("./img/edit_icon.png").default} width="35" style={{verticalAlign: "middle"}}/>
-
-Used to modify device basic information or communication parameters.
-
-<img src={require("./img/edit_device.png").default} width="360" />
-
-
-**2️⃣ View Device Data** <img src={require("./img/view_icon.png").default} width="35" style={{verticalAlign: "middle"}}/>
-
-Used to access the device data page to view operating data and communication status. Control commands can also be issued for the current device.
-
-:::tip
-The displayed data metrics vary depending on device type and requirements.
-:::
-
-Once communication is successfully established, the system will continuously collect and update device data. Users can monitor and analyze the data in real time via the device detail page.
-
-:::info
-- The <img src={require("./img/view_icon.png").default} width="35" style={{verticalAlign: "middle"}}/> button becomes available only after clicking **Refresh**  
-- If it is not displayed, it indicates that device communication has not yet been established or the status has not been updated  
-:::
-
-
-**3️⃣ Delete Device** <img src={require("./img/delete_icon.png").default} width="35" style={{verticalAlign: "middle"}}/>
-
-Used to remove the current device. After deletion, the device must be added again before it can be used.
-
----
-
-## 4. Gateway Settings
+## 3. Gateway Settings
 
 In the **HEMS Configuration** module, navigate to the **Gateway settings** page to view and manage the device’s network connection status. The system supports multiple communication methods, including LTE, WLAN, WAN, and LAN, to meet different networking scenarios.
 
 <img src={require("./img/gateway_setting.png").default} width="960" />
 
-### 4.1 Overview
+### 3.1 Overview
 
 This page displays the current network connection status in a card-based layout. Users can view real-time network information and access corresponding configuration options.
 
 The refresh button in the upper-right corner <img src={require("./img/refresh_icon.png").default} width="50" style={{verticalAlign: "middle"}}/> is used to update the current network status.
 
 
-### 4.2 Network Types
+### 3.2 Network Types
 
 <Tabs>
   <TabItem value="lte" label="LTE" default>
@@ -364,14 +240,14 @@ Click the settings icon <img src={require("./img/setting_icon.png").default} wid
 </Tabs>
 
 
-### 4.3 Instructions
+### 3.3 Instructions
 
 - Each network module provides a configuration entry for accessing detailed settings.  
 - Users can enable or disable network interfaces based on actual requirements.  
 - It is recommended to enable only one primary network connection to avoid conflicts.  
 
 
-### 4.4 Status Description
+### 3.4 Status Description
 
 | Connection Status | Color | Description |
 |------------------|-------|-------------|
@@ -386,6 +262,131 @@ Click the settings icon <img src={require("./img/setting_icon.png").default} wid
 :::
 
 Once the network is successfully connected, the device can communicate with the cloud platform or local system for data upload and remote management.
+
+---
+
+
+## 4. Device Access Configuration
+
+Device access in the system is a prerequisite for energy data collection and management. Users can integrate field devices into the platform for centralized management via the “Add Device” function.
+
+### 4.1 Add Device (Basic Information Configuration)
+
+After logging into the system, go to the **HEMS Configuration** module. Under the **Energy equipment** tab, click the **Add Device** button in the upper-right corner. The “Add Device” window will appear.
+
+**Page Function Description**
+
+1. Click **Refresh support list** to update the currently supported device types and models. This ensures the latest device library is available for selection.
+2. Users must complete the following fields:
+
+| Parameter | Description |
+|----------|-------------|
+| Device Type | Select the category of the device (e.g., inverter, meter, energy storage system). This determines the available brands and models. |
+| Equipment Brand | Select the manufacturer or brand name of the device. |
+| Device Model | Select the corresponding model under the chosen brand. |
+| Device Port | Refers to the communication interface or channel used by the device (e.g., RS485, P1, LAN, LoRa). It is used to establish data communication between the device and the system. |
+
+:::warning
+- Ensure the selected device model matches the actual device; otherwise, communication may fail.  
+- If the required model is not found, click “Refresh support list” to update the device library.  
+- The device port must match the actual wiring method and communication protocol.  
+- Ensure the device is powered on and ready for communication before adding it.  
+:::
+
+
+### 4.2 Communication Parameter Settings
+
+After completing the basic device information, click **Next step** to enter the communication parameter configuration page. This page is used to define communication settings between the device and the system and is critical for successful data acquisition.
+
+**Parameter Description**
+
+:::note
+This configuration page is dynamically generated based on different device brands and models. The following example shows inverter configuration parameters.
+:::
+
+Users must configure the following parameters according to the actual device communication settings:
+
+| Parameter | Description |
+|----------|-------------|
+| Baud Rate | Communication speed in bps (e.g., 1200, 2400, 4800, 9600). |
+| Parity | Data verification method:<br />- NONE (no parity)<br />- EVEN (even parity)<br />- ODD (odd parity) |
+| Data Bits | Length of valid data bits per frame, typically 5, 6, 7, or 8 bits. |
+| Stop Bits | Indicates the end of a data frame, typically 1 or 2 bits. |
+| Communication Address | The device address on the communication bus (e.g., Modbus address).<br />**Note:** Each device on the same bus must have a unique address. Default is usually 1, depending on device configuration. |
+
+After completing the configuration, click **Confirm** to add the device. To modify previous settings, click **Previous** to return.
+
+:::warning
+- Communication parameters must exactly match the device settings; otherwise, the device cannot be recognized.  
+- On the same RS485 bus, the **communication address must be unique**.  
+- If communication fails, check the following first:  
+  - Baud rate consistency  
+  - Correct device address  
+  - Proper wiring (A/B polarity)  
+:::
+
+:::info
+If you need to add more devices, repeat the steps above. A maximum of **10 devices** can be added.
+:::
+
+
+### 4.3 Device Access Status and Management
+
+After completing device addition and communication configuration, the system returns to the **Energy equipment** list page. Successfully added devices are displayed as cards.
+
+#### Device Status Description
+
+After adding a device, it will appear in the list by default. However, some functions (such as data viewing) are only available after successful communication is established.
+
+Users can click the refresh icon in the upper-right corner <img src={require("./img/refresh_icon.png").default} width="50" style={{verticalAlign: "middle"}}/> to update device status and available functions.
+
+<img src={require("./img/device_list.png").default} width="960" />
+
+
+#### Device Card Information
+
+Each device is displayed as a card containing the following information:
+
+- Device ID / SN  
+- Device Type  
+- Brand Information  
+- Device Model  
+
+This allows quick identification of connected devices.
+
+<img src={require("./img/device_card.png").default} width="360" />
+
+
+#### Function Buttons
+
+Each device card provides the following actions:
+
+**1️⃣ Edit Device** <img src={require("./img/edit_icon.png").default} width="35" style={{verticalAlign: "middle"}}/>
+
+Used to modify device basic information or communication parameters.
+
+<img src={require("./img/edit_device.png").default} width="360" />
+
+
+**2️⃣ View Device Data** <img src={require("./img/view_icon.png").default} width="35" style={{verticalAlign: "middle"}}/>
+
+Used to access the device data page to view operating data and communication status. Control commands can also be issued for the current device.
+
+:::tip
+The displayed data metrics vary depending on device type and requirements.
+:::
+
+Once communication is successfully established, the system will continuously collect and update device data. Users can monitor and analyze the data in real time via the device detail page.
+
+:::info
+- The <img src={require("./img/view_icon.png").default} width="35" style={{verticalAlign: "middle"}}/> button becomes available only after clicking **Refresh**  
+- If it is not displayed, it indicates that device communication has not yet been established or the status has not been updated  
+:::
+
+
+**3️⃣ Delete Device** <img src={require("./img/delete_icon.png").default} width="35" style={{verticalAlign: "middle"}}/>
+
+Used to remove the current device. After deletion, the device must be added again before it can be used.
 
 ---
 
