@@ -450,7 +450,7 @@ The **Cloud service configuration** button on the right provides access to detai
 | Disabled | The device runs locally without cloud communication |
 
 :::warning
-- Ensure the device network is properly connected before enabling cloud services (see [Gateway Settings](#4-gateway-settings)).  
+- Ensure the device network is properly connected before enabling cloud services (see [Gateway Settings](#3-gateway-settings)).  
 - The cloud platform address and protocol must match the actual configuration.  
 - If connection fails, check:  
   - Network status  

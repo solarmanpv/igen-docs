@@ -14,7 +14,7 @@ After adding the EMH-2 device in the Energy Ease App, you can view device operat
 
 1. Tap **"+"** in the upper-right corner of the App home page, then select **"Add Device"**.
 2. Tap the <img src={require("./img/scan_icon.png").default} width="25" style={{verticalAlign: "middle"}}/> icon in the upper-right corner and scan the QR code on the device.
-3. Enter the network configuration page. Currently, only local Web-based network configuration is supported. Refer to [Gateway Settings](./device.md#4-gateway-settings). Tap **"Skip"** to skip this step.
+3. Enter the network configuration page. Currently, only local Web-based network configuration is supported. Refer to [Gateway Settings](./device.md#3-gateway-settings). Tap **"Skip"** to skip this step.
 4. After the device is added successfully, you can view the following information on the device details page:
    - Network connection information
    - Connected sub-device list
