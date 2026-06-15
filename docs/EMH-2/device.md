@@ -35,7 +35,7 @@ import TabItem from '@theme/TabItem';
   <TabItem value="wired" label="1️⃣ Wired Connection" default>
   
     1. Power on the device and connect the device WAN port to the PC WAN port using an Ethernet cable. Ensure both are on the same local network.  
-    2. Enter the following address in the browser: http://169.254.254.254 and press Enter.  
+    2. Enter the following address in the browser: https://169.254.254.254 and press Enter.  
     3. On the login page, select your country/region.  
     4. Enter the username and password, then click Login to enter the system.  
 
@@ -49,7 +49,7 @@ import TabItem from '@theme/TabItem';
     1. Complete device addition and network configuration in the mobile app.  
     2. Go to the device details page in the app to check the current device IP address.  
     3. Ensure the PC and device are on the same local network (same router).  
-    4. Enter the device IP address in the browser (e.g., 192.168.xxx.xxx).  
+    4. Enter the device IP address in the browser (e.g., https://192.168.xxx.xxx).  
     5. Enter the username and password, then click Login.  
 
     <img src={require("./img/app1.png").default} width="240" />

@@ -33,7 +33,7 @@ import TabItem from '@theme/TabItem';
 <Tabs>
   <TabItem value="wire" label="1️⃣ 有线连接方式" default>
     1. 接通设备电源，并通过网线将设备 WAN 口与 PC WAN 口连接，确保两者处于同一局域网内  
-    2. 在浏览器地址栏输入：http://169.254.254.254 ，并按下 Enter 键 
+    2. 在浏览器地址栏输入：https://169.254.254.254 ，并按下 Enter 键 
     3. 进入登录页面后，选择所在国家/地区 
     4. 输入用户名及密码，点击【登录】进入系统
 
@@ -45,7 +45,7 @@ import TabItem from '@theme/TabItem';
     1. 根据上一章APP使用步骤的介绍，在移动端APP中完成设备添加及网络配置
     2. 在APP中进入设备详情页面，查看设备当前 IP地址
     3. 确保PC与设备处于同一局域网环境（同一路由器下）
-    4. 在浏览器地址栏输入设备IP地址（如：192.168.xxx.xxx）
+    4. 在浏览器地址栏输入设备IP地址（如：https://192.168.xxx.xxx）
     5. 输入用户名及密码，点击【登录】进入系统
 
     <img src={require("./img/app1.jpeg").default} width="240" /> 
