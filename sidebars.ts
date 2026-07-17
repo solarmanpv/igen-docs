@@ -18,7 +18,7 @@ const sidebars: SidebarsConfig = {
 
   // But you can create a sidebar manually
   
-  tutorialSidebar: [
+  emhSidebar: [
     'EMH-2/safety',
     'EMH-2/introduction',
     'EMH-2/quick-start',
@@ -55,6 +55,17 @@ const sidebars: SidebarsConfig = {
     //     'EMH-2/firmware',
     //   ],
     // },
+  ],
+  emsSidebar: [
+    "EMS-1-P/preface",
+    "EMS-1-P/introduction",
+    "EMS-1-P/installation",
+    "EMS-1-P/connection",
+    "EMS-1-P/system-overview",
+    "EMS-1-P/web",
+    "EMS-1-P/nengrui",
+    "EMS-1-P/tech-specs",
+    "EMS-1-P/support",
   ],
   apiSidebar: [
     "API/OpenData"
