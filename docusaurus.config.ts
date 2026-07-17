@@ -109,6 +109,12 @@ const config: Config = {
         },
         {
           type: "docSidebar",
+          sidebarId: "ems2Sidebar",
+          position: "left",
+          label: "EMS-1-C",
+        },
+        {
+          type: "docSidebar",
           sidebarId: "apiSidebar",
           position: "left",
           label: "API",

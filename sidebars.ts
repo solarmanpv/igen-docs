@@ -63,9 +63,20 @@ const sidebars: SidebarsConfig = {
     "EMS-1-P/connection",
     "EMS-1-P/system-overview",
     "EMS-1-P/web",
-    "EMS-1-P/nengrui",
+    "EMS-1-P/unienergy",
     "EMS-1-P/tech-specs",
     "EMS-1-P/support",
+  ],
+  ems2Sidebar: [
+    "EMS-1-C/preface",
+    "EMS-1-C/introduction",
+    "EMS-1-C/installation",
+    "EMS-1-C/connection",
+    "EMS-1-C/system-overview",
+    "EMS-1-C/web",
+    "EMS-1-C/unienergy",
+    "EMS-1-C/tech-specs",
+    "EMS-1-C/support",
   ],
   apiSidebar: [
     "API/OpenData"
