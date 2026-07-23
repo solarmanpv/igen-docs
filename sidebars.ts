@@ -66,6 +66,10 @@ const sidebars: SidebarsConfig = {
     "EMS-1-P/unienergy",
     "EMS-1-P/tech-specs",
     "EMS-1-P/support",
+    "EMS-1-P/feature-list",
+    "EMS-1-P/supported-devices",
+    "EMS-1-P/integration-timeline",
+    "EMS-1-P/project-level",
   ],
   ems2Sidebar: [
     "EMS-1-C/preface",
@@ -77,6 +81,11 @@ const sidebars: SidebarsConfig = {
     "EMS-1-C/unienergy",
     "EMS-1-C/tech-specs",
     "EMS-1-C/support",
+    "EMS-1-C/feature-list",
+    "EMS-1-C/supported-devices",
+    "EMS-1-C/integration-timeline",
+    "EMS-1-C/project-level",
+
   ],
   apiSidebar: [
     "API/OpenData"
