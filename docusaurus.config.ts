@@ -97,9 +97,21 @@ const config: Config = {
       items: [
         {
           type: "docSidebar",
-          sidebarId: "tutorialSidebar",
+          sidebarId: "emhSidebar",
           position: "left",
           label: "EMH-2",
+        },
+        {
+          type: "docSidebar",
+          sidebarId: "emsSidebar",
+          position: "left",
+          label: "EMS-1-P",
+        },
+        {
+          type: "docSidebar",
+          sidebarId: "ems2Sidebar",
+          position: "left",
+          label: "EMS-1-C",
         },
         {
           type: "docSidebar",
