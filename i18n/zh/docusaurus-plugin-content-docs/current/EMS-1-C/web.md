@@ -40,7 +40,6 @@ description: todo
 
 - Wi-Fi 连接登录地址：https://192.168.123.10:33333/index.html
 - LAN 口登录地址：https://172.19.130.109:33333/index.html
-- WAN 口登录地址：https://172.19.140.109:33333/index.html
 
 通过网口连接设备时，需将电脑的 IP 地址设置至设备对应网口的同一 IP 网段，才能访问 Web 管理界面。
 
