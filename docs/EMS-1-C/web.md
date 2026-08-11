@@ -39,7 +39,6 @@ Make sure the network and network port are connected properly, open the browser 
 
 - Wi-Fi connection login address: https://192.168.123.10:33333/index.html
 - LAN port login address: https://172.19.130.109:33333/index.html
-- WAN port login address: https://172.19.140.109:33333/index.html
 
 When connecting to the device through a network port, you need to set the computer's IP address to the same IP network segment as the device's corresponding network port in order to access the Web management interface.
 
