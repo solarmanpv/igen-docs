@@ -96,26 +96,66 @@ const config: Config = {
       },
       items: [
         {
-          type: "docSidebar",
-          sidebarId: "emhSidebar",
+          type: "dropdown",
+          label: "EMH Series",
           position: "left",
-          label: "EMH-2",
+          items: [
+            {
+              type: "docSidebar",
+              sidebarId: "emh2Sidebar",
+              label: "EMH-2",
+            },
+            // EMH-2S: 暂无文档，待 docs/EMH-2S/ 放入 md 后取消注释：
+            // {
+            //   type: "doc",
+            //   docId: "EMH-2S/introduction",
+            //   label: "EMH-2S",
+            // },
+          ],
         },
         {
-          type: "docSidebar",
-          sidebarId: "emsSidebar",
+          type: "dropdown",
+          label: "EMS Series",
           position: "left",
-          label: "EMS-1-P",
+          items: [
+            {
+              type: "docSidebar",
+              sidebarId: "ems1pSidebar",
+              label: "EMS-1-P",
+            },
+            {
+              type: "docSidebar",
+              sidebarId: "ems1cSidebar",
+              label: "EMS-1-C",
+            },
+            // EMS-1-L: 暂无文档，待 docs/EMS-1-L/ 放入 md 后取消注释：
+            // {
+            //   type: "doc",
+            //   docId: "EMS-1-L/preface",
+            //   label: "EMS-1-L",
+            // },
+          ],
         },
         {
-          type: "docSidebar",
-          sidebarId: "ems2Sidebar",
+          type: "dropdown",
+          label: "Smart Meter",
           position: "left",
-          label: "EMS-1-C",
+          items: [
+            {
+              type: "docSidebar",
+              sidebarId: "mr1D4WreSidebar",
+              label: "MR1-D4-WRE",
+            },
+            {
+              type: "docSidebar",
+              sidebarId: "mr1D5WrSidebar",
+              label: "MR1-D5-WR",
+            },
+          ],
         },
         {
-          type: "docSidebar",
-          sidebarId: "apiSidebar",
+          type: "doc",
+          docId: "API/OpenData",
           position: "left",
           label: "API",
         },

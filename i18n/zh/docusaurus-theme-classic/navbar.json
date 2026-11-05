@@ -3,9 +3,41 @@
     "message": "开发者",
     "description": "The alt text of navbar logo"
   },
+  "item.label.Docs": {
+    "message": "Docs",
+    "description": "Navbar dropdown with label Docs"
+  },
+  "item.label.EMH Series": {
+    "message": "EMH 系列",
+    "description": "Navbar item with label EMH Series"
+  },
+  "item.label.EMS Series": {
+    "message": "EMS 系列",
+    "description": "Navbar item with label EMS Series"
+  },
   "item.label.EMH-2": {
     "message": "EMH-2",
     "description": "Navbar item with label EMH-2"
+  },
+  "item.label.EMS-1-P": {
+    "message": "EMS-1-P",
+    "description": "Navbar item with label EMS-1-P"
+  },
+  "item.label.EMS-1-C": {
+    "message": "EMS-1-C",
+    "description": "Navbar item with label EMS-1-C"
+  },
+  "item.label.Smart Meter": {
+    "message": "智能电表",
+    "description": "Navbar dropdown with label Smart Meter"
+  },
+  "item.label.MR1-D4-WRE": {
+    "message": "MR1-D4-WRE",
+    "description": "Navbar item with label MR1-D4-WRE"
+  },
+  "item.label.MR1-D5-WR": {
+    "message": "MR1-D5-WR",
+    "description": "Navbar item with label MR1-D5-WR"
   },
   "item.label.API": {
     "message": "API",
